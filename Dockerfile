@@ -5,9 +5,16 @@ ENV TERRAFORM_VERSION 0.11.11
 ENV PACKER_VERISON 1.3.4
 ENV VAULT_VERSION 1.0.3
 
-RUN apt-get update
-RUN apt-get install -y curl wget zip make git jq awscli
-#build-essential
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    curl \
+    wget \
+    unzip \
+    make \
+    git \
+    jq \
+    awscli && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install terraform
 RUN wget -O /tmp/terraform.$$ https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${PLATFORM}.zip && \
