@@ -12,26 +12,20 @@ RUN apt-get update && \
     unzip \
     git \
     jq \
-    awscli
-
-RUN apt-get install -y \
-    make && \
-    rm -rf /var/lib/apt/lists/*
+    awscli \
+    make && rm -rf /var/lib/apt/lists/*
 
 # Install terraform
 RUN wget -O /tmp/terraform.$$ https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${PLATFORM}.zip && \
-    unzip -d /usr/local/bin/terraform /tmp/terraform.$$ && \
-    chmod +x /usr/local/bin && \
-    rm /tmp/terraform.$$
+    unzip -d /usr/local/bin /tmp/terraform.$$ && \
+    chmod +x /usr/local/bin
 
 # Install packer
 RUN wget -O /tmp/packer.$$ https://releases.hashicorp.com/packer/${PACKER_VERISON}/packer_${PACKER_VERISON}_${PLATFORM}.zip && \
     unzip -d /usr/local/bin /tmp/packer.$$ && \
-    chmod +x /usr/local/bin/packer && \
-    rm /tmp/packer.$$
+    chmod +x /usr/local/bin/packer
 
 # Install vault
 RUN wget -O /tmp/vault.$$ https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_${PLATFORM}.zip && \
     unzip -d /usr/local/bin /tmp/vault.$$ && \
-    chmod +x /usr/local/bin/vault && \
-    rm /tmp/vault.$$
+    chmod +x /usr/local/bin/vault
