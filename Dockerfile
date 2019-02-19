@@ -10,10 +10,12 @@ RUN apt-get update && \
     curl \
     wget \
     unzip \
-    make \
     git \
     jq \
-    awscli && \
+    awscli
+
+RUN apt-get install -y \
+    make && \
     rm -rf /var/lib/apt/lists/*
 
 # Install terraform
